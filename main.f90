@@ -24,14 +24,13 @@
     !                            University of Houston
     !**************************************************************************
     program SLDG2D_transport
-
     use globals2d
     use element_mod
     use LU
     implicit none
-
+    
     call parameters
-
+    
     do kkkk = 1,5
         nx = 10*2**(kkkk-1)
         ny = nx
@@ -59,6 +58,7 @@
 
         nt =0
 
+	call output_paraview(kkkk, nt)
         !******************** BEGIN TIME EVOLUTION ***************************
         do while(tnum<tprint-1.d-11)
             call setdt
@@ -74,7 +74,9 @@
                 endif
             endif
             nt = nt + 1
+            call output_paraview(kkkk, nt)
             if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
+            
         enddo
         call order_DG
         call deallocate_variable
@@ -126,4 +128,5 @@
 
     include "search_QC_formula.f90"
     include "get_quadratic_root.f90"
+    include "output_plot.f90"
     end program SLDG2D_transport
