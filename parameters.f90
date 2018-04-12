@@ -27,7 +27,7 @@
     ! if isearch = 2, call search_QC.
     isearch = 2
     n_moment = 6
-    limiter = 1
+    limiter = 0
 
 
     para_dx3 = 0.01
