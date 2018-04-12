@@ -31,7 +31,7 @@
     
     call parameters
     
-    do kkkk = 1,5
+    do kkkk = 1,3
         nx = 10*2**(kkkk-1)
         ny = nx
 

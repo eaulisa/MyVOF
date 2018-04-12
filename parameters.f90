@@ -16,10 +16,10 @@
     xlength = xright - xleft
     ylength = yright - yleft
 
-    tprint = 1.5
+    tprint = 2*1.5
     !tprint =0.01
     !tprint = pi
-    cfl = 1.
+    cfl = 1./2
     ! cfl = 1.
     irk = 5
     ighost = int(cfl) + 7
@@ -27,7 +27,7 @@
     ! if isearch = 2, call search_QC.
     isearch = 2
     n_moment = 6
-    limiter = 0
+    limiter = 1
 
 
     para_dx3 = 0.01
