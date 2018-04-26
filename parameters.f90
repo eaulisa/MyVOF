@@ -16,9 +16,9 @@
     xlength = xright - xleft
     ylength = yright - yleft
 
-    tprint = 2*1.5
+    tprint = 8 ! period for test in 4.6
     !tprint =0.01
-    !tprint = pi
+    !tprint = 5 * pi ! period for test in 4.8
     cfl = 1./2
     ! cfl = 1.
     irk = 5

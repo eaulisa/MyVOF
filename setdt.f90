@@ -3,7 +3,7 @@
 
     real denominator
     denominator = abs( cos(pi*tnum/tprint ) )
-    if (denominator < 1.e-5) denominator = 1.e-05
+    if (denominator < 1.e-10) denominator = 1.e-10
     !denominator = 1.;
     
     dt = cfl/( pi*overdx + pi*overdy ) / denominator

@@ -95,13 +95,24 @@
     implicit none
     real, intent(in) :: x,y,t
     real :: rb,rb0
-
-    rb = sqrt( (x-0.15/0.5*pi)**2 + (y)**2  )
-    rb0 = 0.3*pi
+    real :: x0, y0, d
+    
+    rb = sqrt( (x-0.15/0.5*pi)**2 + (y)**2  ) ! init test 4.6
+    rb0 = 0.3*pi ! init test 4.6
+    x0 = (x-0.15) * rb0 / rb + 0.15;
+    y0 = y * rb0 / rb;
+    d = sqrt( (x0-x)**2 + (y0-y)**2)
+    
+    
+    !rb = sqrt( (x-pi)**2 + (y-pi)**2  )
+    !rb0 = 8./5.*pi
     if(rb < rb0)then
-        exact =  rb0 * cos( pi*rb/(2.*rb0) )**6
+        !exact =  rb0 * cos( pi*rb/(2.*rb0) )**6 ! init test 4.6
+        !exact =  1. ! init test 4.8
+        exact = -d;
     else
-        exact = 0.
+        !exact = 0.
+        exact = d
     endif
 
     return

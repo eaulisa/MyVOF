@@ -31,7 +31,7 @@
     
     call parameters
     
-    do kkkk = 1,3
+    do kkkk = 4,4
         nx = 10*2**(kkkk-1)
         ny = nx
 
@@ -44,6 +44,7 @@
         call allocate_variable
 
         call init
+        
         if(limiter == 1)then
             call boundary
             call trouble_tvb
@@ -64,6 +65,7 @@
             call setdt
             call boundary
             call scheme_SLDG
+            call VOFlimiter
             if(limiter == 1)then
                 call boundary
                 call trouble_tvb
@@ -78,7 +80,7 @@
             if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
             
         enddo
-        call order_DG
+        call order_DG !here we are going to comute the mass and geometric errors
         call deallocate_variable
     enddo
 
@@ -129,4 +131,5 @@
     include "search_QC_formula.f90"
     include "get_quadratic_root.f90"
     include "output_plot.f90"
+    include "VOF_limiter.f90"
     end program SLDG2D_transport

@@ -81,7 +81,8 @@
 
     real,intent(in) :: x16,y16,t16
 
-    ax = -cos(x16/2)**2 * sin(y16) * cos(pi*t16/tprint )*pi
+    ax = -cos(x16/2)**2 * sin(y16) * cos(pi*t16/tprint )*pi ! velocity test 4.6
+    !ax = -cos(x16/2)**2 * sin(y16) *pi ! velocity test 4.8
 
 
     end function ax
@@ -91,6 +92,7 @@
 
     real,intent(in) :: x16,y16,t16
 
-    bx = sin(x16)*cos(y16/2.)**2 * cos(pi*t16/tprint )*pi
+    bx = sin(x16)*cos(y16/2.)**2 * cos(pi*t16/tprint )*pi ! velocity test 4.6
+    !bx = sin(x16)*cos(y16/2.)**2 * pi ! velocity test 4.8
 
     end function bx
