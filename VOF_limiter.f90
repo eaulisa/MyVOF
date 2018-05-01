@@ -2,7 +2,7 @@
     implicit none
     real :: c1,c2,c3,c4,c5,c6
     real :: minValue,maxValue
-    real :: temp, x, y, den
+    real :: temp, x, y, den, d 
    
     do i = 1 , nx
       do j = 1 ,ny
@@ -85,8 +85,25 @@
 	  !print*, c1," ",c2," ",c3," ",c4," ",c5," ",c6
 	  !print*, minValue, " ", maxValue, "AAAAAAAAAAAAA"
 	!end if
+	
+	minValue = minValue - 0.5
+	maxValue = maxValue - 0.5;
+            
+        d = 1.    
+	if( minValue < 0. .and. maxValue > 0.) then
+	  if (minValue > -0.5 .and. maxValue < 0.5) then
+	    d = min(1.5 , 0.5 / max( abs(minValue) , maxValue))
+	  endif
+	endif
+	
+	if(d .ne. 1.) then
+	  Dij(i,j)%umodal(1:6)  = Dij(i,j)%umodal(1:6) * d
+	  Dij(i,j)%umodal(1) = Dij(i,j)%umodal(1) + 0.5 * (1. - d)
+	end if
 	enddo
       enddo
+      
+
 ! 
 !     do i = 1 , nx
 !         do j = 1 ,ny

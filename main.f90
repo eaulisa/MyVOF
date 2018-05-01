@@ -31,7 +31,7 @@
     
     call parameters
     
-    do kkkk = 4,4
+    do kkkk = 1,3
         nx = 10*2**(kkkk-1)
         ny = nx
 
@@ -77,10 +77,10 @@
             endif
             nt = nt + 1
             call output_paraview(kkkk, nt)
-            if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
+            !if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
             
         enddo
-        call order_DG !here we are going to comute the mass and geometric errors
+        call orderVOF_DG !here we are going to comute the mass and geometric errors
         call deallocate_variable
     enddo
 
