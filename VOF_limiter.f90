@@ -94,12 +94,34 @@
 	  if (minValue > -0.5 .and. maxValue < 0.5) then
 	    d = min(1.5 , 0.5 / max( abs(minValue) , maxValue))
 	  endif
+	else if( minValue >= 0. .and. maxValue < 0.5) then
+	  d = min(1.5 , 0.5 / maxValue)
+	else if( maxValue <= 0. .and. minValue >-0.5) then
+	  d = min(1.5 , 0.5 / abs(minValue) )
+	else if( maxValue > 0.5 .and. minValue < -0.5) then
+	  d = max(1./1.5 , 0.5 / max( abs(minValue) , maxValue) )
+	  print*, minValue, " ",maxValue," ", d
+	else if( maxValue > 0.5 .and. minValue > -0.5) then
+	  d = max(1./1.5 , 0.5 /  maxValue )
+	  print*, minValue, " ",maxValue," ", d
+	else if( maxValue < 0.5 .and. minValue < -0.5) then
+	  d = max(1./1.5 , 0.5 / abs( minValue )  )
+	  print*, minValue, " ",maxValue," ", d
 	endif
+	
 	
 	if(d .ne. 1.) then
 	  Dij(i,j)%umodal(1:6)  = Dij(i,j)%umodal(1:6) * d
 	  Dij(i,j)%umodal(1) = Dij(i,j)%umodal(1) + 0.5 * (1. - d)
 	end if
+	
+	if(minValue > 0.4) then
+	  Dij(i,j)%umodal(2:6)  = 0
+	  Dij(i,j)%umodal(1) = 1
+	else if(maxValue < -0.4) then
+	  Dij(i,j)%umodal(1:6)  = 0.
+	end if
+	
 	enddo
       enddo
       

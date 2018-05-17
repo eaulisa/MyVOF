@@ -37,11 +37,11 @@
       format_string = "(a21, i1, a1, i2, a4)"
     else if (iteration < 1000) then
       format_string = "(a21, i1, a1, i3, a4)"
-    else if (iteration < 1000) then
-      format_string = "(a21, i1, a1, i4, a4)"
     else if (iteration < 10000) then
-      format_string = "(a21, i1, a1, i5, a4)"
+      format_string = "(a21, i1, a1, i4, a4)"
     else if (iteration < 100000) then
+      format_string = "(a21, i1, a1, i5, a4)"
+    else if (iteration < 1000000) then
       format_string = "(a21, i1, a1, i6, a4)"
     endif
     write (filename,format_string) "./output/paraview_2d.", kkkk,".", iteration, ".vtk"

@@ -107,8 +107,8 @@
     !rb = sqrt( (x-pi)**2 + (y-pi)**2  )
     !rb0 = 8./5.*pi
     if(rb < rb0)then
-        !exact =  rb0 * cos( pi*rb/(2.*rb0) )**6 ! init test 4.6
-        exact =  1. ! init test 4.8
+        exact =  rb0 * cos( pi*rb/(2.*rb0) )**6 ! init test 4.6
+        !exact =  1. ! init test 4.8
         !exact = -d;
     else
         exact = 0.

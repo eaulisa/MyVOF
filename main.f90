@@ -31,7 +31,7 @@
     
     call parameters
     
-    do kkkk = 1,3
+    do kkkk = 1,5
         nx = 10*2**(kkkk-1)
         ny = nx
 
@@ -57,7 +57,7 @@
 
         tnum = 0.
 
-        nt =0
+        nt = 0
 
 	call output_paraview(kkkk, nt)
         !******************** BEGIN TIME EVOLUTION ***************************
@@ -65,7 +65,7 @@
             call setdt
             call boundary
             call scheme_SLDG
-            call VOFlimiter
+            !call VOFlimiter
             if(limiter == 1)then
                 call boundary
                 call trouble_tvb
@@ -77,10 +77,11 @@
             endif
             nt = nt + 1
             call output_paraview(kkkk, nt)
-            !if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
+	    !if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
             
         enddo
-        call orderVOF_DG !here we are going to comute the mass and geometric errors
+        call order_DG
+        !call orderVOF_DG !here we are going to comute the mass and geometric errors
         call deallocate_variable
     enddo
 

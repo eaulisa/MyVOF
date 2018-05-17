@@ -38,8 +38,8 @@
     enddo
     error1=error1/( (xright-xleft)*(yright-yleft) )
     error2=sqrt(error2/( (xright-xleft)*(yright-yleft) ))
+    
     if(kkkk.eq.1) write(123,103) nx,ny,error1,error2,error3
-    write(*,*) error1,error2,error3
     if(kkkk.gt.1) then
         rr1=log(er11/error1)/log(2.0)
         rr2=log(er22/error2)/log(2.0)
@@ -47,6 +47,8 @@
         write(123,102) nx,ny,error1,rr1,error2, rr2,error3, rr3
         write(*,*) nx,ny,rr1,rr2,rr3
     endif
+    write(*,*) error1,error2,error3
+    
     er11=error1
     er22=error2
     er33=error3
@@ -84,9 +86,6 @@
     dx1 = dx / (nx1 - 1)
     dy1 = dy / (ny1 - 1)
     
-    
-    
-
     error1 = 0.0
     error2 = 0.0
     error3 = 0.0
@@ -139,6 +138,10 @@
             enddo
         enddo
     enddo
+    
+    if(kkkk == 1) then
+      write(*,*) " L1 geom err", "      L2 geom err", "        Mass err", "        ExactMass",  "     Mass at T"
+    endif
     error3 = abs(exactMass - vofMass)
     
     error1=error1/( (xright-xleft)*(yright-yleft) )
@@ -152,7 +155,6 @@
         write(123,102) nx,ny,error1,rr1,error2, rr2,error3, rr3
         write(*,*) nx,ny,rr1,rr2,rr3
     endif
-    
     write(*,*) error1,error2,error3, exactMass, vofMass
    
     er11=error1
