@@ -31,7 +31,7 @@
     
     call parameters
     
-    do kkkk = 1,5
+    do kkkk = 1,4
         nx = 10*2**(kkkk-1)
         ny = nx
 
@@ -65,7 +65,7 @@
             call setdt
             call boundary
             call scheme_SLDG
-            !call VOFlimiter
+            call VOFlimiter
             if(limiter == 1)then
                 call boundary
                 call trouble_tvb
@@ -80,8 +80,8 @@
 	    !if(nt/2*2==nt) print *,tnum,tnum/tprint*100,"%"
             
         enddo
-        call order_DG
-        !call orderVOF_DG !here we are going to comute the mass and geometric errors
+        !call order_DG
+        call orderVOF_DG !here we are going to comute the mass and geometric errors
         call deallocate_variable
     enddo
 

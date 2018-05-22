@@ -2,9 +2,9 @@
     implicit none
 
     real denominator
-    denominator = abs( cos(pi*tnum/tprint ) )
-    if (denominator < 1.e-10) denominator = 1.e-10
-    !denominator = 1.;
+!     denominator = abs( cos(pi*tnum/tprint ) )
+!     if (denominator < 1.e-10) denominator = 1.e-10
+    denominator = 1.;
     
     dt = cfl/( pi*overdx + pi*overdy ) / denominator
 
